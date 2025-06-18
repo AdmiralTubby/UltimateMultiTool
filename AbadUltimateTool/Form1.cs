@@ -627,7 +627,17 @@ public partial class UltimateMultiTool : Form
         foreach (var row in rows)
         {
             long bigger = Math.Max(new FileInfo(row.SourcePath).Length,
-                                   new FileInfo(row.TargetPath).Length);
+                       new FileInfo(row.TargetPath).Length);
+
+            if (FilesEqual(row.SourcePath, row.TargetPath)) // needed to add this shit because otherwise it could start loading 10mb files fully due to no differences (because I only shorten the files if there are changes..)
+            {
+                MessageBox.Show(this,
+                    $"No differences found in \"{row.File}\".",
+                    "Diff",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                continue;                          // skip to next selected row
+            }
 
             if (bigger > SoftLimit)
             {
@@ -641,23 +651,17 @@ public partial class UltimateMultiTool : Form
                     MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button2);
 
-                if (ans == DialogResult.No)
-                    continue;      // skip this pair, proceed with next
-
-                if (ans == DialogResult.Cancel)
-                    break;         // abort entire loop
+                if (ans == DialogResult.No) continue;  // next pair
+                if (ans == DialogResult.Cancel) break;      // abort loop
             }
 
-            new DiffViewer(row.SourcePath, row.TargetPath).Show(this); // modeless
+            new DiffViewer(row.SourcePath, row.TargetPath)
+                .Show(this);                        
+
         }
     }
 
-    // -------------------------------------------------------------
-    //  Opens the exclusion-list editor. If the user pressed Save
-    //  in that dialog, the singleton ExcludeFolderStore has already
-    //  been updated and persisted → re-run the comparison so the
-    //  grid reflects the new skip rules.
-    // -------------------------------------------------------------
+
     private void cmdEditExcl_Click(object sender, EventArgs e)
     {
         using var dlg = new ExcludeEditor();
@@ -668,5 +672,25 @@ public partial class UltimateMultiTool : Form
             _ = RunComparisonAsync(_lastTargetDir);   // async, fire-and-forget
     }
 
+    private static bool FilesEqual(string a, string b)
+    {
+        const int BUF = 1024 * 1024;                // 1 MB chunks
+        using var s1 = File.OpenRead(a);
+        using var s2 = File.OpenRead(b);
+
+        if (s1.Length != s2.Length) return false;
+
+        var buf1 = new byte[BUF];
+        var buf2 = new byte[BUF];
+
+        int read;
+        while ((read = s1.Read(buf1, 0, BUF)) > 0)
+        {
+            s2.ReadExactly(buf2.AsSpan(0, read));   // .NET 8 helper
+            if (!buf1.AsSpan(0, read).SequenceEqual(buf2.AsSpan(0, read)))
+                return false;
+        }
+        return true;
+    }
 
 }

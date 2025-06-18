@@ -221,10 +221,7 @@ public partial class DiffViewer : Form
         }
     }
 
-    /// <summary>
-    ///  Keep the non-active textbox vertically aligned with the one the user
-    ///  just scrolled.
-    /// </summary>
+
     private void SyncScroll(object? sender, EventArgs e)
     {
         var src = sender as RichTextBox;

@@ -46,29 +46,10 @@ public partial class SplashScreen : Form
 
     private void SplashStartButton_Click(object sender, EventArgs e)
     {
-        SoundPlayer playCoolTunes = new SoundPlayer(Properties.Resources.crackmusic2);
-        playCoolTunes.Stop();
+ 
         this.Close();
 
     }
 
-    private void playMusic(object sender, EventArgs e)
-    {
 
-        if (FirstTimePress == 0)
-        {
-            // play some awesome tunes (FL FTW)
-            SoundPlayer playCoolTunes = new SoundPlayer(Properties.Resources.crackmusic2);
-            playCoolTunes.PlayLooping();
-            FirstTimePress = 1;
-        }
-        else
-        {
-            SoundPlayer playCoolTunes = new SoundPlayer(Properties.Resources.crackmusic2);
-            playCoolTunes.Stop();
-
-        }
-
-
-    }
 }
