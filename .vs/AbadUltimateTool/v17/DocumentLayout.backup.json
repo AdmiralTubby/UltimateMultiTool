@@ -1,0 +1,138 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\ipparser\\ipparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\ipparser\\ipparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\ipparser\\iptabfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\ipparser\\iptabfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\ipparser\\ipusage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\ipparser\\ipusage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\ipparser\\csvexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\ipparser\\csvexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\users\\javie\\source\\repos\\abadultimatetool\\abadultimatetool\\ipparser\\iprange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\ipparser\\iprange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\Form1.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs [Design]",
+              "RelativeToolTip": "AbadUltimateTool\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:48:40.479Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\Form1.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs",
+              "RelativeToolTip": "AbadUltimateTool\\Form1.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:45:38.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IpUsage.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpUsage.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\IpParser\\IpUsage.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpUsage.cs",
+              "RelativeToolTip": "AbadUltimateTool\\IpParser\\IpUsage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:30:20.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IpTabFactory.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpTabFactory.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\IpParser\\IpTabFactory.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpTabFactory.cs",
+              "RelativeToolTip": "AbadUltimateTool\\IpParser\\IpTabFactory.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:30:20.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IpRange.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpRange.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\IpParser\\IpRange.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpRange.cs",
+              "RelativeToolTip": "AbadUltimateTool\\IpParser\\IpRange.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:30:20.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IpParser.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpParser.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\IpParser\\IpParser.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\IpParser.cs",
+              "RelativeToolTip": "AbadUltimateTool\\IpParser\\IpParser.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAHMAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:30:20.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CsvExporter.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\CsvExporter.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\IpParser\\CsvExporter.cs",
+              "ToolTip": "C:\\Users\\javie\\source\\repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\CsvExporter.cs",
+              "RelativeToolTip": "AbadUltimateTool\\IpParser\\CsvExporter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T17:30:20.228Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
