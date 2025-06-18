@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
 
 
-// --------------------------------------------------------------------------------------------
-//  Plain immutable record for one palette line.
-//  I’m keeping it in its own file so parsing logic and UI code can’t mutate it by accident.
-// --------------------------------------------------------------------------------------------
+
+//  immutable record for one palette line.
+//  keeping it in its own file so parsing logic and UI code can’t mutate it by accident
+
 
 
 namespace AbadUltimateTool.Palette;

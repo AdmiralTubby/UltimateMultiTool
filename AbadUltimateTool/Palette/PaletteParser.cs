@@ -6,9 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace AbadUltimateTool.Palette;
 
-// --------------------------------------------------------------------------------------------
-//  Static helper: crawls folders->cracks lines with a regex
-// --------------------------------------------------------------------------------------------
+
 
 // Find Palette files and parse them for their ID, RGB value, and comment
 // Why? Because most ppl can't read RGB values and know what they mean...
@@ -31,15 +29,15 @@ internal static class PaletteParser
         {
             string dir = todo.Pop();
 
-            //   Grab *.ini files 
+            //   Grab *Palette*.ini files 
             IEnumerable<string> files = Enumerable.Empty<string>();
             try
             {
-                files = Directory.EnumerateFiles(dir, "Palette*.ini", SearchOption.TopDirectoryOnly);
+                files = Directory.EnumerateFiles(dir, "*Palette*.ini", SearchOption.TopDirectoryOnly);
             }
-            catch (UnauthorizedAccessException) { /* skip sealed directory */ }
-            catch (PathTooLongException) { /* skip absurd path */      }
-            catch (DirectoryNotFoundException) { /* disappeared; skip */ }
+            catch (UnauthorizedAccessException) { } //skip sealed directories 
+            catch (PathTooLongException) { }// skip absurd paths
+            catch (DirectoryNotFoundException) { }// skip dissappeared files or paths (might be volatile somehow)
 
             foreach (var f in files)
                 yield return f;
@@ -50,7 +48,7 @@ internal static class PaletteParser
             {
                 subDirs = Directory.EnumerateDirectories(dir);
             }
-            catch (UnauthorizedAccessException) { } //skip sealed directories like the recycling bin (LIKE A BAWS)
+            catch (UnauthorizedAccessException) { } //skip sealed directories 
             catch (PathTooLongException) { } // skip absurd paths
             catch (DirectoryNotFoundException) { } // skip dissappeared files or paths (might be volatile somehow)
 

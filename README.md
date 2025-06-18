@@ -4,6 +4,7 @@ A tool for finding information, comparing files, transferring files, visualizing
 You need AT LEAST:
 Visual Studio 2022 v17.8
 .NET 8.0
+Although the above only matters if you want to open up the project and work on it.
 
 Need those versions mainly because I wanted to be able to publish a single .exe file.
 To install .NET 8 you need VS 2022 17.8 or higher (https://learn.microsoft.com/en-us/dotnet/core/install/windows), and I want .NET 8 because it bundles runtimeconfig.json instead of having it loose.

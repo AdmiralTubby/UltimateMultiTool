@@ -9,10 +9,6 @@ namespace AbadUltimateTool.Palette;
 internal static class PaletteTabFactory
 {
 
-    // --------------------------------------------------------------------------------------------
-    //  Builds one TabPage containing a colour-aware DataGridView
-    //  All sizing / painting details live here so the form stays thin
-    // --------------------------------------------------------------------------------------------
 
 
     public static TabPage Create(string filePath, List<PaletteEntry> entries)
