@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,12 +15,13 @@ public partial class DiffViewer : Form
     private const int HardLimitBytes = 50 * 1024 * 1024;   // 50 MB hard stop
     private const int Context = 25;                 // number of lines to keep
     private const string GapMarker = "------------------------------------------------------------";       // dash gap
-                                                                                                           // Win32 messages used for line-synchronisation
+    // Win32 messages used for line-synchronisation
     private const int EM_GETFIRSTVISIBLELINE = 0x00CE;
     private const int EM_LINESCROLL = 0x00B6;
 
     [DllImport("user32.dll")]
     private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
     // ──────────────── navigation state (PgUp / PgDn) ─────────────────────
     private int[] _diffPositions = Array.Empty<int>();
     private int _currentDiffIx = 0;
@@ -28,116 +30,146 @@ public partial class DiffViewer : Form
     public DiffViewer(string leftPath, string rightPath)
     {
         InitializeComponent();
+
+        // keep the two boxes in sync while scrolling
         rtbLeft.VScroll += SyncScroll;
         rtbRight.VScroll += SyncScroll;
 
         Text = $"Diff – {Path.GetFileName(leftPath)}";
-        KeyPreview = true;          // form gets PgUp/PgDn
+        KeyPreview = true;                            // form gets PgUp / PgDn
 
         Shown += async (_, __) =>
         {
-            UseWaitCursor = true;
+            UseWaitCursor = true;                     // busy cursor while we work
 
-            // heavy work off the UI thread
-            var data = await Task.Run(() =>
+            // ---- STEP 0  load files on a pool thread --------------------
+            var (leftLines, rightLines, leftMsg, rightMsg) = await Task.Run(() =>
             {
-                var left = TryLoad(leftPath);   // (lines , msg)
-                var right = TryLoad(rightPath);  // (lines , msg)
-
-                return (leftLines: left.lines,
-                        rightLines: right.lines,
-                        leftMsg: left.msg,
-                        rightMsg: right.msg);
+                var l = TryLoad(leftPath);            // (lines , msg)
+                var r = TryLoad(rightPath);
+                return (l.lines, r.lines, l.msg, r.msg);
             });
 
-            // back on UI thread
-            if (data.leftMsg != null) rtbLeft.Text = data.leftMsg;
-            if (data.rightMsg != null) rtbRight.Text = data.rightMsg;
+            // show any “<file missing> …” placeholder text
+            if (leftMsg != null) rtbLeft.Text = leftMsg;
+            if (rightMsg != null) rtbRight.Text = rightMsg;
 
-            if (data.leftLines != null && data.rightLines != null)
-                ShowDiff(data.leftLines, data.rightLines);
+            // ---- STEP 1  large-diff guard --------------------------------
+            const long SoftLimit = 1 * 1024 * 1024;  // 1 MB
+            bool bigFile = new FileInfo(leftPath).Length > SoftLimit ||
+                               new FileInfo(rightPath).Length > SoftLimit;
+            bool manyChanges = bigFile &&
+                               RoughChangeRatio(leftLines, rightLines) > 0.30;
 
+            if (manyChanges)
+            {
+                var ans = MessageBox.Show(this,
+                    "More than 30 % of the lines differ in a file over 1 MB.\n" +
+                    "Diffing may feel slow.  Continue?",
+                    "Large diff warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2);
+
+                if (ans == DialogResult.No) { Close(); return; }
+            }
+
+            // build diff on a pool thread
+            var cooked = await Task.Run(() => BuildDiffLines(leftLines, rightLines));
+
+            // single UI pass to paint it
+            RenderDiffLines(cooked);
             UseWaitCursor = false;
         };
     }
 
-    // ──────────────── file loading helper ───────────────────────────────
-    private (string[] lines, string msg) TryLoad(string path)
-    {
-        var fi = new FileInfo(path);
-        if (!fi.Exists) return (null, "<file missing>");
-        if (fi.Length > HardLimitBytes) return (null, "<file too large>");
-
-        byte[] bytes = File.ReadAllBytes(path);
-        if (bytes.Any(b => b == 0)) return (null, "<binary file – diff not shown>");
-
-        return (File.ReadAllLines(path), null);
-    }
-
     // ──────────────── diff & rendering ──────────────────────────────────
-    private void ShowDiff(string[] left, string[] right)
+    private List<string> BuildDiffLines(string[] left, string[] right)
     {
-        int max = Math.Max(left.Length, right.Length);
+        var result = new List<string>(2048);
+        int maxLines = Math.Max(left.Length, right.Length);
 
-        // 1) collect changed line numbers
-        var diffLines = new System.Collections.Generic.List<int>(1024);
-        for (int i = 0; i < max; i++)
+        // quick collect changed line numbers
+        var diffLines = new List<int>(1024);
+        for (int i = 0; i < maxLines; i++)
         {
             string l = i < left.Length ? left[i] : string.Empty;
             string r = i < right.Length ? right[i] : string.Empty;
-            if (!string.Equals(l, r, StringComparison.Ordinal)) diffLines.Add(i);
+            if (!l.Equals(r, StringComparison.Ordinal)) diffLines.Add(i);
         }
 
+        // nothing differs – show whole file, skip all fancy stuff
         if (diffLines.Count == 0)
         {
-            rtbLeft.Text = string.Join(Environment.NewLine, left);
-            rtbRight.Text = string.Join(Environment.NewLine, right);
-            return;
+            result.AddRange(left);
+            _diffPositions = Array.Empty<int>();     // navigation disabled
+            return result;
         }
 
         var diffSet = diffLines.ToHashSet();
-        rtbLeft.SuspendLayout();
-        rtbRight.SuspendLayout();
-
         int lastWritten = -1;
 
         foreach (int idx in diffLines)
         {
             int start = Math.Max(idx - Context, lastWritten + 1);
-            int end = Math.Min(idx + Context, max - 1);
+            int end = Math.Min(idx + Context, maxLines - 1);
 
-            if (start > lastWritten + 1)
-            {
-                AppendGap(rtbLeft);
-                AppendGap(rtbRight);
-            }
+            if (start > lastWritten + 1) result.Add(GapMarker);   // visual break
 
             for (int i = start; i <= end; i++)
             {
                 string l = i < left.Length ? left[i] : string.Empty;
                 string r = i < right.Length ? right[i] : string.Empty;
-                bool highlight = diffSet.Contains(i);
+                bool changed = diffSet.Contains(i);
 
-                AppendLine(rtbLeft, l, highlight);
-                AppendLine(rtbRight, r, highlight);
+                // prefix 0x00 / 0x01 so RenderDiffLines knows what to highlight
+                result.Add((changed ? "\u0001" : "\u0000") + l);   // left
+                result.Add((changed ? "\u0001" : "\u0000") + r);   // right
+            }
+            lastWritten = end;
+        }
+
+        // ☞ store positions for PgUp / PgDn
+        _diffPositions = diffLines.Distinct().OrderBy(i => i).ToArray();
+        _currentDiffIx = 0;
+        return result;
+    }
+
+    private void RenderDiffLines(List<string> cooked)
+    {
+        rtbLeft.SuspendLayout();
+        rtbRight.SuspendLayout();
+
+        bool writeLeftNext = true;                    // interleaved sequence
+
+        foreach (string s in cooked)
+        {
+            if (s == GapMarker)
+            {
+                AppendGap(rtbLeft);
+                AppendGap(rtbRight);
+                continue;
             }
 
-            lastWritten = end;
+            bool highlight = s[0] == '\u0001';
+            string text = s.Substring(1);
+
+            if (writeLeftNext)
+                AppendLine(rtbLeft, text, highlight);
+            else
+                AppendLine(rtbRight, text, highlight);
+
+            writeLeftNext = !writeLeftNext;           // L → R → L …
         }
 
         rtbLeft.ResumeLayout();
         rtbRight.ResumeLayout();
-
-        // for PgUp / PgDn navigation
-        _diffPositions = diffLines.Distinct().OrderBy(i => i).ToArray();
-        _currentDiffIx = 0;
     }
 
     private static void AppendGap(RichTextBox rtb)
     {
         int start = rtb.TextLength;
         rtb.AppendText(GapMarker + Environment.NewLine);
-
         rtb.Select(start, GapMarker.Length);
         rtb.SelectionFont = new Font(rtb.Font, FontStyle.Italic);
         rtb.SelectionColor = Color.DarkGray;
@@ -156,7 +188,23 @@ public partial class DiffViewer : Form
         }
     }
 
-    // ──────────────── PgUp / PgDn navigation ────────────────────────────
+    private (string[] lines, string msg) TryLoad(string path)
+    {
+        var fi = new FileInfo(path);
+        if (!fi.Exists) return (null, "<file missing>");
+        if (fi.Length > HardLimitBytes)
+            return (null, "<file too large>");
+
+        byte[] bytes = File.ReadAllBytes(path);
+        if (bytes.Any(b => b == 0))
+            return (null, "<binary file – diff not shown>");
+
+        return (File.ReadAllLines(path), null);
+    }
+
+    //──────────────────────────────────────────────────────────────────────
+    //  PgUp / PgDn navigation
+    //──────────────────────────────────────────────────────────────────────
     protected override void OnKeyDown(KeyEventArgs e)
     {
         base.OnKeyDown(e);
@@ -192,7 +240,9 @@ public partial class DiffViewer : Form
         }
     }
 
-    // ──────────────── synced scrolling (WM_VSCROLL) ─────────────────────
+    //──────────────────────────────────────────────────────────────────────
+    //  Synced scrolling
+    //──────────────────────────────────────────────────────────────────────
     private const int WM_VSCROLL = 0x0115;
     private const int SB_VERT = 1;
     private const int SB_THUMBPOSITION = 4;
@@ -212,7 +262,9 @@ public partial class DiffViewer : Form
             var src = Control.FromHandle(m.HWnd) as RichTextBox;
             if (src == null) return;
 
-            var dst = src == rtbLeft ? rtbRight : (src == rtbRight ? rtbLeft : null);
+            var dst = src == rtbLeft ? rtbRight
+                     : src == rtbRight ? rtbLeft
+                     : null;
             if (dst == null) return;
 
             int pos = GetScrollPos(src.Handle, SB_VERT);
@@ -221,7 +273,6 @@ public partial class DiffViewer : Form
         }
     }
 
-
     private void SyncScroll(object? sender, EventArgs e)
     {
         var src = sender as RichTextBox;
@@ -229,21 +280,32 @@ public partial class DiffViewer : Form
 
         var dst = src == rtbLeft ? rtbRight : rtbLeft;
 
-        // index (0-based) of the topmost visible text line in the source box
         int firstVisible = SendMessage(src.Handle, EM_GETFIRSTVISIBLELINE, 0, 0);
-
-        // index of top line currently visible in the other box
         int dstVisible = SendMessage(dst.Handle, EM_GETFIRSTVISIBLELINE, 0, 0);
-        int delta = firstVisible - dstVisible;
-        if (delta == 0) return;                     // already aligned
 
-        // scroll destination box by the same amount
+        int delta = firstVisible - dstVisible;
+        if (delta == 0) return;                          // already aligned
         SendMessage(dst.Handle, EM_LINESCROLL, 0, delta);
     }
 
-
-    private void rtbRight_TextChanged(object sender, EventArgs e)
+    //──────────────────────────────────────────────────────────────────────
+    //  Helper: “how many lines differ?”
+    //──────────────────────────────────────────────────────────────────────
+    private static double RoughChangeRatio(string[] a, string[] b)
     {
+        int max = Math.Max(a.Length, b.Length);
+        int diff = 0;
+        for (int i = 0; i < max; i++)
+        {
+            if (!(i < a.Length && i < b.Length &&
+                  a[i].Equals(b[i], StringComparison.Ordinal)))
+                diff++;
+        }
+        return (double)diff / max;
+    }
 
+    private void rtbRight_TextChanged(object? sender, EventArgs e)
+    {
+        // does nothing – only here so the Designer compiles
     }
 }

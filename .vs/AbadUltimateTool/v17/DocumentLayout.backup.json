@@ -3,19 +3,23 @@
   "WorkspaceRootPath": "C:\\Repos\\AbadUltimateTool\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\filediff\\diffviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\filediff\\diffviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\abadultimatetool.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\abadultimatetool.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\filediff\\diffviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\filediff\\diffviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\filediff\\diffviewer.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\filediff\\diffviewer.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|solutionrelative:abadultimatetool\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D550EDB-716E-475F-91AB-8C611E1BF3EE}|AbadUltimateTool\\AbadUltimateTool.csproj|c:\\repos\\abadultimatetool\\abadultimatetool\\filediff\\directoryindex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,6 +46,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "DiffViewer.Designer.cs",
+              "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\FileDiff\\DiffViewer.Designer.cs",
+              "RelativeDocumentMoniker": "AbadUltimateTool\\FileDiff\\DiffViewer.Designer.cs",
+              "ToolTip": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\FileDiff\\DiffViewer.Designer.cs",
+              "RelativeToolTip": "AbadUltimateTool\\FileDiff\\DiffViewer.Designer.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAhwEkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T08:49:01.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AbadUltimateTool.csproj",
               "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\AbadUltimateTool.csproj",
               "RelativeDocumentMoniker": "AbadUltimateTool\\AbadUltimateTool.csproj",
@@ -49,11 +66,12 @@
               "RelativeToolTip": "AbadUltimateTool\\AbadUltimateTool.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-18T21:37:55.147Z"
+              "WhenOpened": "2025-06-18T21:37:55.147Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -65,33 +83,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DiffViewer.cs",
               "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\FileDiff\\DiffViewer.cs",
               "RelativeDocumentMoniker": "AbadUltimateTool\\FileDiff\\DiffViewer.cs",
               "ToolTip": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\FileDiff\\DiffViewer.cs",
               "RelativeToolTip": "AbadUltimateTool\\FileDiff\\DiffViewer.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAiwBsAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAB0BAAAAAAAAAAAQwDsBAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T21:32:20.416Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs",
               "RelativeDocumentMoniker": "AbadUltimateTool\\Form1.cs",
               "ToolTip": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs",
               "RelativeToolTip": "AbadUltimateTool\\Form1.cs",
-              "ViewState": "AgIAAIQCAAAAAAAAAAAAAJcCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHICAAAAAAAAAAAAAIECAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T21:21:01.898Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "DirectoryIndex.cs",
               "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\FileDiff\\DirectoryIndex.cs",
               "RelativeDocumentMoniker": "AbadUltimateTool\\FileDiff\\DirectoryIndex.cs",
@@ -103,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\Form1.cs",
               "RelativeDocumentMoniker": "AbadUltimateTool\\Form1.cs",
@@ -114,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CsvExporter.cs",
               "DocumentMoniker": "C:\\Repos\\AbadUltimateTool\\AbadUltimateTool\\IpParser\\CsvExporter.cs",
               "RelativeDocumentMoniker": "AbadUltimateTool\\IpParser\\CsvExporter.cs",
