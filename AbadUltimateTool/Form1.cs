@@ -629,16 +629,6 @@ public partial class UltimateMultiTool : Form
             long bigger = Math.Max(new FileInfo(row.SourcePath).Length,
                        new FileInfo(row.TargetPath).Length);
 
-            if (FilesEqual(row.SourcePath, row.TargetPath)) // needed to add this shit because otherwise it could start loading 10mb files fully due to no differences (because I only shorten the files if there are changes..)
-            {
-                MessageBox.Show(this,
-                    $"No differences found in \"{row.File}\".",
-                    "Diff",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                continue;                          // skip to next selected row
-            }
-
             if (bigger > SoftLimit)
             {
                 double mb = bigger / (1024.0 * 1024.0);
@@ -653,10 +643,21 @@ public partial class UltimateMultiTool : Form
 
                 if (ans == DialogResult.No) continue;  // next pair
                 if (ans == DialogResult.Cancel) break;      // abort loop
+
+            }
+
+            if (FilesEqual(row.SourcePath, row.TargetPath)) // needed to add this shit because otherwise it could start loading 10mb files fully due to no differences (because I only shorten the files if there are changes..)
+            {
+                MessageBox.Show(this,
+                    $"No differences found in \"{row.File}\".",
+                    "Diff",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                continue;                          // skip to next selected row
             }
 
             new DiffViewer(row.SourcePath, row.TargetPath)
-                .Show(this);                        
+                .Show(this);                        // show the diff viewer form
 
         }
     }
