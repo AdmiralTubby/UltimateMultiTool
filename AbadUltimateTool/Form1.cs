@@ -656,8 +656,7 @@ public partial class UltimateMultiTool : Form
                 continue;                          // skip to next selected row
             }
 
-            new DiffViewer(row.SourcePath, row.TargetPath)
-                .Show(this);                        // show the diff viewer form
+            Program.ShowDiffInThread(row.SourcePath, row.TargetPath);
 
         }
     }

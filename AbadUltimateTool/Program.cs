@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace AbadUltimateTool;
@@ -44,4 +45,17 @@ static class Program
         Application.Run(new UltimateMultiTool());
 
     }
+    public static void ShowDiffInThread(string left, string right)
+    {
+        var t = new Thread(_ =>
+        {
+            ApplicationConfiguration.Initialize();     // ensure visual styles
+            Application.Run(new DiffViewer(left, right));
+        });
+        t.SetApartmentState(ApartmentState.STA);
+        t.IsBackground = true;
+        t.Start();
+    }
+
+
 }
